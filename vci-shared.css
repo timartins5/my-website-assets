@@ -1,0 +1,446 @@
+/* ============================================================
+   VCI SHARED STYLE SYSTEM
+   Village Capital & Investment LLC
+   Source of truth for all internal web apps.
+   Hosted on GitHub — link from every app's Index.html.
+   
+   Brand Guide refs:
+   - Primary Red:  #AD2542
+   - Dark:         #14252C
+   - Blue:         #1B324A
+   - Gray:         #F5F5F5
+   - White:        #FFFFFF
+   - Font:         Open Sans (primary), Times New Roman (secondary)
+   ============================================================ */
+
+/* ── 1. DESIGN TOKENS ─────────────────────────────────────── */
+:root {
+  /* Brand colors */
+  --vci-red:    #AD2542;
+  --vci-dark:   #14252C;
+  --vci-blue:   #1B324A;
+  --vci-gray:   #F5F5F5;
+  --vci-white:  #FFFFFF;
+
+  /* Semantic aliases */
+  --primary:    var(--vci-red);
+  --dark:       var(--vci-dark);
+  --blue:       var(--vci-blue);
+  --bg:         var(--vci-gray);
+  --white:      var(--vci-white);
+  --text:       #1C1C1C;
+  --muted:      #6B7280;
+  --border:     #E0E5E8;
+  --shadow-1:   0 10px 25px rgba(0,0,0,.06);
+  --shadow-2:   0 2px 8px rgba(0,0,0,.08);
+
+  /* Typography */
+  --font-primary:   'Open Sans', system-ui, Arial, sans-serif;
+  --font-secondary: 'Times New Roman', Georgia, serif;
+
+  /* Spacing */
+  --radius:     8px;
+  --radius-lg:  12px;
+}
+
+/* ── 2. RESET & BASE ──────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-primary);
+  font-size: 14px;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+input, select, textarea, button {
+  font-family: var(--font-primary);
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: var(--primary);
+}
+
+/* ── 3. MAINTENANCE BANNER ────────────────────────────────── */
+/* Full-width red bar — sits above the top-strip/header.
+   Toggle via toggleMaintBanner() in Code.gs + JS.           */
+.vci-maint-banner {
+  display: none;
+  background: var(--vci-red);
+  color: var(--white);
+  text-align: center;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  font-family: var(--font-primary);
+}
+
+/* ── 4. TOP STRIP (dark bar above header) ─────────────────── */
+.vci-top-strip {
+  height: 44px;
+  background: var(--vci-dark);
+  box-shadow: 0 1px 0 rgba(0,0,0,.08);
+}
+
+/* ── 5. HEADER ────────────────────────────────────────────── */
+.vci-header {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.vci-header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.vci-brand-logo {
+  height: 40px;
+  width: auto;
+}
+
+/* ── 6. HEADER PILLS (nav buttons) ───────────────────────── */
+/* Standard pill button used in every app header */
+.vci-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.vci-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 16px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-primary);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity .15s, transform .1s;
+  white-space: nowrap;
+  background: var(--vci-red);
+  color: var(--white);
+}
+
+.vci-pill:hover   { opacity: .88; transform: translateY(-1px); }
+.vci-pill:active  { opacity: 1;   transform: translateY(0); }
+
+/* Pill variants */
+.vci-pill--dark   { background: var(--vci-dark); }
+.vci-pill--blue   { background: var(--vci-blue); }
+.vci-pill--outline {
+  background: transparent;
+  color: var(--vci-red);
+  border: 1.5px solid var(--vci-red);
+}
+.vci-pill--banner { background: var(--vci-red); color: var(--white); }
+
+/* ── 7. TOOL HERO (page title section) ───────────────────── */
+.vci-tool-hero {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+  padding: 24px 20px 20px;
+}
+
+.vci-tool-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--vci-red);
+  margin: 0;
+  letter-spacing: -.01em;
+}
+
+.vci-tool-subtitle {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 6px 0 0;
+}
+
+/* ── 8. MAIN CONTENT WRAPPER ──────────────────────────────── */
+.vci-wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* ── 9. CARDS ─────────────────────────────────────────────── */
+.vci-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-1);
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.vci-card h2 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--vci-blue);
+  margin: 0 0 6px;
+}
+
+.vci-card p {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0 0 16px;
+}
+
+/* ── 10. BUTTONS ──────────────────────────────────────────── */
+.vci-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 20px;
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-primary);
+  font-size: 13px;
+  font-weight: 600;
+  transition: opacity .15s, transform .1s;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.vci-btn:hover  { opacity: .88; transform: translateY(-1px); }
+.vci-btn:active { opacity: 1;   transform: translateY(0); }
+
+.vci-btn--primary   { background: var(--vci-red);  color: var(--white); }
+.vci-btn--secondary { background: var(--vci-blue); color: var(--white); }
+.vci-btn--dark      { background: var(--vci-dark); color: var(--white); }
+.vci-btn--outline {
+  background: transparent;
+  color: var(--vci-red);
+  border: 1.5px solid var(--vci-red);
+}
+.vci-btn--small { padding: 5px 12px; font-size: 12px; }
+.vci-btn--full  { width: 100%; justify-content: center; }
+
+/* ── 11. FORM FIELDS ──────────────────────────────────────── */
+.vci-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 14px;
+}
+
+.vci-field label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.vci-field input,
+.vci-field select,
+.vci-field textarea {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 13px;
+  color: var(--text);
+  background: var(--white);
+  transition: border-color .15s, box-shadow .15s;
+  outline: none;
+}
+
+.vci-field input:focus,
+.vci-field select:focus,
+.vci-field textarea:focus {
+  border-color: var(--vci-red);
+  box-shadow: 0 0 0 3px rgba(173,37,66,.10);
+}
+
+/* ── 12. BADGES / PILLS ───────────────────────────────────── */
+.vci-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .02em;
+}
+
+.vci-badge--red    { background: #fce4e9; color: var(--vci-red); }
+.vci-badge--blue   { background: #e3eaf3; color: var(--vci-blue); }
+.vci-badge--dark   { background: #d6dcdf; color: var(--vci-dark); }
+.vci-badge--green  { background: #e2f5ea; color: #166534; }
+.vci-badge--yellow { background: #fef9c3; color: #854d0e; }
+
+/* ── 13. TABLE ────────────────────────────────────────────── */
+.vci-table-wrap { overflow-x: auto; }
+
+.vci-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.vci-table thead tr {
+  background: var(--vci-dark);
+  color: var(--white);
+}
+
+.vci-table th {
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: .03em;
+}
+
+.vci-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+.vci-table tbody tr:hover { background: #f9f2f4; }
+.vci-table tbody tr.clickable { cursor: pointer; }
+
+/* ── 14. MODAL BACKDROP & CARD ────────────────────────────── */
+.vci-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  z-index: 1000;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 16px;
+  overflow-y: auto;
+}
+
+.vci-modal-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 60px rgba(0,0,0,.2);
+  width: 100%;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+}
+
+.vci-modal-header {
+  padding: 18px 22px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 14px;
+}
+
+.vci-modal-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--vci-blue);
+}
+
+.vci-modal-body   { padding: 20px 22px; overflow-y: auto; max-height: 65vh; }
+.vci-modal-footer {
+  padding: 14px 22px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  background: var(--white);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+
+/* ── 15. LOADING OVERLAY ──────────────────────────────────── */
+.vci-loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255,255,255,.82);
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.vci-spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--border);
+  border-top-color: var(--vci-red);
+  border-radius: 50%;
+  animation: vci-spin .7s linear infinite;
+}
+
+@keyframes vci-spin { to { transform: rotate(360deg); } }
+
+/* ── 16. TOAST / SUCCESS BANNER ───────────────────────────── */
+.vci-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--vci-dark);
+  color: var(--white);
+  padding: 10px 22px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  z-index: 3000;
+  box-shadow: var(--shadow-1);
+  animation: vci-fadein .2s ease;
+}
+
+@keyframes vci-fadein { from { opacity:0; transform: translateX(-50%) translateY(8px); } }
+
+/* ── 17. FOOTER ───────────────────────────────────────────── */
+.vci-footer {
+  background: var(--vci-dark);
+  color: rgba(255,255,255,.7);
+  text-align: center;
+  padding: 16px 20px;
+  font-size: 12px;
+  margin-top: auto;
+}
+
+.vci-footer strong, .vci-footer a {
+  color: var(--white);
+  text-decoration: none;
+}
+
+/* ── 18. UTILITIES ────────────────────────────────────────── */
+.vci-subtle  { color: var(--muted); font-size: 12px; }
+.vci-red     { color: var(--vci-red); }
+.vci-bold    { font-weight: 700; }
+.vci-mt-0    { margin-top: 0; }
+.vci-mt-8    { margin-top: 8px; }
+.vci-mt-16   { margin-top: 16px; }
+.vci-text-center { text-align: center; }
+
+/* ── 19. RESPONSIVE ───────────────────────────────────────── */
+@media (max-width: 640px) {
+  .vci-header-inner { padding: 0 12px; height: 56px; }
+  .vci-wrap         { padding: 12px; }
+  .vci-card         { padding: 16px; }
+  .vci-pill         { font-size: 12px; padding: 6px 12px; }
+  .vci-modal-card   { max-width: 100%; }
+  .vci-tool-title   { font-size: 22px; }
+}
